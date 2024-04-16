@@ -1,56 +1,101 @@
+import { useState, ChangeEvent, FormEvent, Dispatch } from "react"
 import { categories } from "../data/categories"
+import { Activity } from "../types"
+import { ActivityActions } from "../reducers/activity-reducer"
 
-export default function Form() {
-  return (
-    <form 
-    className=" bg-slate-700 rounded-lg shadow p-7 mx-4 space-y-5"
-    >
-        <div className="grid grid-cols-1 gap-3">
-            <label htmlFor="category" className=" font-bold text-white">Categoria:</label>
-            <select 
-                defaultValue="" 
-                id="category" 
-                className="border border-slate-500 rounded-md p-2 hover:cursor-pointer"
-            >
-                <option value="" disabled >Seleccione una opción</option>
-                {categories.map(category => (
-                    <option 
-                        key={category.id}
-                        value="{category.id}"
-                        >
-                        {category.name}
-                    </option>
-                ))}
-            </select>
-        </div>
+type FormProps = {
+    dispatch: Dispatch<ActivityActions>
+}
 
-        <div className="grid grid-cols-1 gap-3">
-            <label htmlFor="activity" className="font-bold">Actividad:</label>
-            <input 
-                id="activity" 
-                type="text" 
-                className="border border-slate-500 rounded-md p-2"
-                placeholder="Actividad. ej. Gym o Bicicleta"
-            />
-        </div>
+export default function Form({dispatch} : FormProps) {
 
-        <div className="grid grid-cols-1 gap-3">
-            <label htmlFor="calories" className="font-bold">Calorias:</label>
-            <input 
-                id="activity" 
-                type="number" 
-                className="border border-slate-500 rounded-md p-2"
-                placeholder="Calorias. ej. 300 o 500"
-            />
-        </div>
+    const [activity, setActivity] = useState<Activity>({
+        category: 0,
+        name: "",
+        calories: 0
+    })
 
-        <input 
-            type="button" 
-            className=" bg-slate-500 text-white w-full hover:cursor-pointer border border-slate-500 rounded-md p-2"
-            value="Guardar"
-        />
+    const handleChange = (e : ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
+
+        const isNumberField = ["category", "calories"].includes(e.target.id) ? +e.target.value : e.target.value
         
+        setActivity({
+            ...activity, 
+            [e.target.id]: isNumberField
+        })
+    }
 
-    </form>
-  )
+    const isValidActivity = () => {
+        const { category, name, calories } = activity
+        return category > 0 && name.trim() !== "" && calories > 0
+    }
+
+    const handleSubmit = (e : FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        dispatch({ type: "save-activity", payload: {newActivity: activity}})
+    }
+
+    return (
+        <form 
+            className=" bg-slate-700 rounded-lg shadow-lg shadow-black p-7 mx-4 space-y-5"
+            onSubmit={handleSubmit}
+        >
+            <div className="grid grid-cols-1 gap-3">
+                <label htmlFor="category" className=" font-bold text-white">Categoria:</label>
+                <select 
+                    id="category" 
+                    className="border border-slate-500 rounded-md p-2 hover:cursor-pointer"
+                    value={activity.category}
+                    onChange={handleChange}
+                >
+                    <option value="0" disabled >Seleccione una opción</option>
+                    {categories.map(category => (
+                        <option 
+                            key={category.id}
+                            value={category.id}
+                            >
+                            {category.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3">
+                <label htmlFor="name" className="font-bold text-white">Actividad:</label>
+                <input 
+                    id="name" 
+                    type="text" 
+                    className="border border-slate-500 rounded-md p-2"
+                    placeholder="Actividad. ej. Gym o Bicicleta"
+                    value={activity.name}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <div className="grid grid-cols-1 gap-3">
+                <label htmlFor="calories" className="font-bold text-white">Calorias:</label>
+                <input 
+                    id="calories" 
+                    type="number" 
+                    className="border border-slate-500 rounded-md p-2"
+                    placeholder="Calorias. ej. 300 o 500"
+                    value={activity.calories}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <input 
+                type="submit" 
+                className="font-bold bg-orange-500 text-white w-full hover:cursor-pointer  rounded-md p-2 disabled:bg-opacity-10 disabled:cursor-not-allowed"
+                value={
+                    activity.category === 0 ? "Guardar" :
+                        activity.category === 1 ? "Guardar Comida" : "Guardar Ejercicio"
+                }
+                disabled={!isValidActivity()}
+            />
+            
+
+        </form>
+    )
 }
