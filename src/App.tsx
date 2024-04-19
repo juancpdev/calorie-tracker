@@ -2,6 +2,7 @@ import { useReducer } from "react"
 import Form from "./components/Form"
 import { activityReducer, initialState } from "./reducers/activity-reducer"
 import ActivityList from "./components/ActivityList"
+import Resume from "./components/Resume"
 
 function App() {
 
@@ -15,16 +16,25 @@ function App() {
           </div>
         </header>
 
-        <div className=" md:flex md:justify-center">
-          <section className="py-20 min-w-96" >
-            <div className=" w-auto max-w-3xl mx-auto">
-              <Form
-                dispatch = {dispatch}
-              />
-            </div>
-          </section>
+        <div className=" xl:flex md:justify-center ">
+          <div className=" md:flex justify-center md:gap-5 xl:block xl:pl-12">
 
-          <section className=" md:py-20 ">
+            <section className="pt-10 flex justify-center mx-5 md:py-10 md:max-w-md md:ml-5 md:mr-0 xl:pb-0 xl:m-0 " >
+                <Resume/>
+            </section>
+            
+            <section className="py-10 mx-5 md:mr-5 md:ml-0 xl:m-0" >
+   
+                <Form
+                  dispatch = {dispatch}
+                />
+
+            </section>
+            
+          </div>
+          
+
+          <section className=" w-full py-10 md:px-5">
             <ActivityList 
               activities = {state.activities}
             />

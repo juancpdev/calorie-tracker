@@ -5,3 +5,8 @@
 body {
     background-color: #0F1C2E !important;
 }
+
+.calendario {
+    min-width: 200px;
+    width: auto !important;
+}

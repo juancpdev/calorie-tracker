@@ -45,8 +45,9 @@ export default function Form({dispatch} : FormProps) {
     }
 
     return (
+        
         <form 
-            className=" rounded-lg shadow-lg shadow-black p-7 mx-6 space-y-5"
+            className=" rounded-lg shadow-lg shadow-black p-5 space-y-5 min-w-72 w-auto md:min-w-96"
             style={{backgroundColor: "#1F2B3E"}}
             onSubmit={handleSubmit}
         >

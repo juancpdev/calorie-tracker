@@ -18,7 +18,7 @@ export default function ActivityList({ activities } : ActivityStateProp) {
             >
                 <h2 className=" text-3xl font-bold text-white text-center">Comidas y Actividades</h2>
                 
-                <div className="md:grid grid-cols-2 gap-10">
+                <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
                     {activities.map( activity => (
                         <div key={activity.id} className=" px-5 py-10 mt-10 flex justify-between bg-white w-full rounded-md mx-auto">
                             <div className=" text-xl font-bold relative">

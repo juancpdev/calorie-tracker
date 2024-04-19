@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fullWidth: {
+        '100': '100%',
+      },
+    },
   },
   plugins: [
     require('tailwindcss-animated')
