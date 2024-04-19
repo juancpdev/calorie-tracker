@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, FormEvent, Dispatch } from "react"
+import { v4 as uuidv4 } from "uuid";
 import { categories } from "../data/categories"
 import { Activity } from "../types"
 import { ActivityActions } from "../reducers/activity-reducer"
@@ -7,13 +8,16 @@ type FormProps = {
     dispatch: Dispatch<ActivityActions>
 }
 
+const initialState : Activity = {
+    id: uuidv4(),
+    category: 0,
+    name: "",
+    calories: 0
+}
+
 export default function Form({dispatch} : FormProps) {
 
-    const [activity, setActivity] = useState<Activity>({
-        category: 0,
-        name: "",
-        calories: 0
-    })
+    const [activity, setActivity] = useState<Activity>(initialState)
 
     const handleChange = (e : ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
 
@@ -34,11 +38,16 @@ export default function Form({dispatch} : FormProps) {
         e.preventDefault()
 
         dispatch({ type: "save-activity", payload: {newActivity: activity}})
+        setActivity({
+            ...initialState,
+            id: uuidv4()
+        })
     }
 
     return (
         <form 
-            className=" bg-slate-700 rounded-lg shadow-lg shadow-black p-7 mx-4 space-y-5"
+            className=" rounded-lg shadow-lg shadow-black p-7 mx-6 space-y-5"
+            style={{backgroundColor: "#1F2B3E"}}
             onSubmit={handleSubmit}
         >
             <div className="grid grid-cols-1 gap-3">

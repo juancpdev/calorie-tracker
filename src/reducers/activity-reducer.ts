@@ -16,9 +16,13 @@ export const activityReducer = (
     state: ActivityState = initialState,
     action: ActivityActions
 ) => {
-    
+
     if(action.type === 'save-activity'){
-        console.log("guardando");
+        
+        return {
+            ...state,
+            activities: [...state.activities, action.payload.newActivity]
+        }
         
     }
 
