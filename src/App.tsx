@@ -23,7 +23,7 @@ function App() {
                 <Resume/>
             </section>
             
-            <section className="py-10 mx-5 md:mr-5 md:ml-0 xl:m-0" >
+            <section className="py-10 mx-5 md:mr-5 md:ml-0 xl:m-0 xl:pb-0" >
    
                 <Form
                   dispatch = {dispatch}
@@ -34,7 +34,7 @@ function App() {
           </div>
           
 
-          <section className=" w-full py-10 md:px-5">
+          <section className=" w-full py-10 md:px-5 xl:pb-8">
             <ActivityList 
               activities = {state.activities}
             />
