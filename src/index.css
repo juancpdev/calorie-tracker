@@ -17,6 +17,36 @@ body {
     box-shadow: #203B60 0 0 10px 1px;
 }
 
+.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus {
+    background-color: #637aa0;
+}
+
+.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus {
+    background-color: #637aa0;
+    border-radius: 10px;
+}
+
+.react-calendar__tile--now {
+    background: #374357;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: red;
+}
+
+.react-calendar__tile {
+    border-radius: 10px;
+}
+
+.react-calendar__tile--active {
+    background: #1b8dff;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
 .text-neon {
     text-shadow: 0 0 2px #000000;
 }
