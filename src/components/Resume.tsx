@@ -11,10 +11,10 @@ export default function Resume() {
    
     return (
         <div 
-            className=" rounded-lg shadow-lg shadow-black p-5 "
+            className=" rounded-lg shadow-custom p-5 "
             style={{backgroundColor: "#1F2B3E"}}
         >
-            <h2 className=" text-center text-white font-bold pb-3">Buscar por día:</h2>
+            <h2 className=" text-center text-white font-bold pb-3">Historial</h2>
             <Calendar onChange={onChange} value={value} className={'calendario min-w-80'} />
         </div>
     )

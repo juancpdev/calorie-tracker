@@ -17,7 +17,7 @@ function App() {
         </header>
 
         <div className=" xl:flex md:justify-center ">
-          <div className=" md:flex justify-center md:gap-5 xl:block xl:pl-12">
+          <div className=" md:flex justify-center items-center md:gap-5 xl:block xl:pl-12">
 
             <section className="pt-10 flex justify-center mx-5 md:py-10 md:max-w-md md:ml-5 md:mr-0 xl:pb-0 xl:m-0 " >
                 <Resume/>
