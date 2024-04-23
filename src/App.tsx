@@ -5,6 +5,7 @@ import Form from "./components/Form"
 import { activityReducer, initialState } from "./reducers/activity-reducer"
 import ActivityList from "./components/ActivityList"
 import Resume from "./components/Resume"
+import CalorieTracker from "./components/CalorieTracker"
 
 function App() {
 
@@ -49,13 +50,21 @@ function App() {
             
           </div>
           
+          <div className=" w-full">
+            <section className=" w-full pt-10 md:px-5 xl:pb-8">
+              <CalorieTracker 
+                activities={state.activities}
+              />
+            </section>
 
-          <section className=" w-full py-10 md:px-5 xl:pb-8">
-            <ActivityList 
-              activities = {state.activities}
-              dispatch = {dispatch}
-            />
-          </section>
+            <section className=" w-full py-10 md:px-5 xl:pb-8 xl:pt-0">
+              <ActivityList 
+                activities = {state.activities}
+                dispatch = {dispatch}
+              />
+            </section>
+          </div>
+
         </div>
     </>
   )

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useMemo, Dispatch } from "react"
 import { Activity } from "../types"
 import { categories } from "../data/categories"
@@ -18,10 +19,10 @@ export default function ActivityList({ activities, dispatch } : ActivityStatePro
     return (
         <>
             <div
-                className=" rounded-lg shadow-custom p-7 mx-6 space-y-14 activity"
+                className=" rounded-lg shadow-custom p-7 mx-6 space-y-11 activity"
                 style={{backgroundColor: "#1F2B3E"}}
             >
-                <h2 className=" text-3xl font-bold text-white text-center">Comidas y Actividades</h2>
+                <h2 className=" text-2xl md:text-3xl font-bold text-white text-center">Comidas y Actividades</h2>
             
                     {isEmptyActivities ?
                         <p className="text-white text-center">No hay datos en la fecha seleccionada</p> : 
