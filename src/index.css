@@ -67,6 +67,16 @@ body {
     box-shadow: 0 0 10px .1px limegreen;
 }
 
+.sombra-edit:hover {
+    transition: all .3s ease;
+    color: rgb(1, 1, 131);
+}
+
+.sombra-delete:hover {
+    transition: all .3s ease;
+    color: rgb(201, 0, 0);
+}
+
 /* Estilos para el scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
