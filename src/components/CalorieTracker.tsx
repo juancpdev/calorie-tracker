@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useMemo } from 'react'
 import { Activity } from '../types'
 import CalorieDisplay from './CalorieDisplay'

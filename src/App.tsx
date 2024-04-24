@@ -36,7 +36,9 @@ function App() {
           <div className=" md:flex justify-center items-center md:gap-5 xl:block xl:pl-12">
 
             <section className="pt-10 flex justify-center mx-5 md:py-10 md:max-w-md md:ml-5 md:mr-0 xl:pb-0 xl:m-0 " >
-                <Resume/>
+                <Resume 
+                  dispatch = {dispatch}
+                />
             </section>
             
             <section className="py-10 mx-5 md:mr-5 md:ml-0 xl:m-0 xl:pb-0" >

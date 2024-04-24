@@ -1,15 +1,25 @@
 import { Activity } from "../types"
 
+const getFormattedDate = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
 export type ActivityActions = 
     { type: 'save-activity', payload: { newActivity: Activity } } |
     { type: 'set-activeId', payload: { id: Activity['id']} } |
     { type: 'delete-activity', payload: { id: Activity['id']} } |
+    { type: 'set-date', payload: { date : string} } |
     { type: 'restart-app' } 
 
 
 export type ActivityState = {
     activities : Activity[],
-    activeId: Activity['id']
+    activeId: Activity['id'],
+    date: string
 }
 
 const localStorageActivities = () : Activity[] => {
@@ -19,7 +29,8 @@ const localStorageActivities = () : Activity[] => {
 
 export const initialState : ActivityState = {
     activities: localStorageActivities(),
-    activeId: ''
+    activeId: '',
+    date: getFormattedDate()
 }
 
 export const activityReducer = (
@@ -52,7 +63,15 @@ export const activityReducer = (
         
         return {
             ...state,
-            activeId: action.payload.id
+            activeId: action.payload.id,
+        }
+    }
+
+    if(action.type === 'set-date'){
+        
+        return {
+            ...state,
+            date: action.payload.date
         }
     }
 
