@@ -5,19 +5,22 @@ import { Activity } from "../types"
 import { ActivityActions } from "../reducers/activity-reducer"
 import { ActivityState } from "../reducers/activity-reducer";
 
+
 type FormProps = {
     dispatch: Dispatch<ActivityActions>,
-    state: ActivityState
+    state: ActivityState,
+    selectedDate: string;
 }
 
 const initialState : Activity = {
     id: uuidv4(),
     category: 0,
     name: "",
-    calories: 0
+    calories: 0,
+    creationDate: ""
 }
 
-export default function Form({dispatch, state} : FormProps) {
+export default function Form({dispatch, state, selectedDate} : FormProps) {
 
     const [activity, setActivity] = useState<Activity>(initialState)
 
@@ -51,10 +54,16 @@ export default function Form({dispatch, state} : FormProps) {
     const handleSubmit = (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        dispatch({ type: "save-activity", payload: {newActivity: activity}})
+        const updatedActivity = {
+            ...activity,
+            creationDate: selectedDate // Agregar la fecha seleccionada
+        };
+
+        dispatch({ type: "save-activity", payload: {newActivity: updatedActivity}})
         setActivity({
             ...initialState,
-            id: uuidv4()
+            id: uuidv4(),
+            creationDate: selectedDate
         })
     }
 

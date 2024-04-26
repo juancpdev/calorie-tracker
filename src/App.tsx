@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useMemo, useReducer } from "react"
+import { useEffect, useMemo, useReducer, useState } from "react"
 import Form from "./components/Form"
 import { activityReducer, initialState } from "./reducers/activity-reducer"
 import ActivityList from "./components/ActivityList"
@@ -16,6 +16,30 @@ function App() {
   }, [state.activities])
 
   const canRestartApp = () => useMemo(() => state.activities.length, [state.activities])
+
+
+  const getFormattedDate = (value? : Date) => {
+    let now = new Date();
+
+    if(value) {
+        now = value
+    }
+
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+    
+  };
+
+  const [selectedDate, setSelectedDate] = useState<string>( getFormattedDate() );
+
+
+  const handleDateChange = (date: Date) => {
+    dispatch({ type: "set-date", payload: { date: getFormattedDate(date) } })
+    setSelectedDate(getFormattedDate(date))
+  };
+
   
   return (
     <>
@@ -37,7 +61,7 @@ function App() {
 
             <section className="pt-10 flex justify-center mx-5 md:py-10 md:max-w-md md:ml-5 md:mr-0 xl:pb-0 xl:m-0 " >
                 <Resume 
-                  dispatch = {dispatch}
+                  onDateChange = {handleDateChange}
                 />
             </section>
             
@@ -46,6 +70,7 @@ function App() {
                 <Form
                   dispatch = {dispatch}
                   state = {state}
+                  selectedDate = {selectedDate}
                 />
 
             </section>
