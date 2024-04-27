@@ -4,14 +4,21 @@ import { Activity } from '../types'
 import CalorieDisplay from './CalorieDisplay'
 
 type CalorieTrackerProps = {
-    activities: Activity[]
+    activities: Activity[],
+    selectedDate: string
 }
 
-export default function CalorieTracker({activities} : CalorieTrackerProps)  {
+export default function CalorieTracker({activities, selectedDate} : CalorieTrackerProps)  {
 
-    const caloriesConsumed = useMemo(() => activities.reduce((total, activity) => activity.category === 1 ? total + activity.calories : total , 0 ), [activities])
-    const caloriesBurned = useMemo(() => activities.reduce((total, activity) => activity.category === 2 ? total + activity.calories : total , 0 ), [activities])
-    const caloriesDif = useMemo(() => caloriesConsumed - caloriesBurned , [activities])
+    const caloriesConsumed = useMemo(() => activities.reduce((total, activity) => 
+        activity.category === 1 && activity.creationDate === selectedDate ? total + activity.calories : total , 0), 
+    [activities, selectedDate]);
+
+    const caloriesBurned = useMemo(() => activities.reduce((total, activity) => 
+        activity.category === 2 && activity.creationDate === selectedDate ? total + activity.calories : total , 0), 
+    [activities, selectedDate]);
+
+    const caloriesDif = useMemo(() => caloriesConsumed - caloriesBurned , [caloriesConsumed, caloriesBurned]);
 
     return (
         <>
@@ -21,6 +28,7 @@ export default function CalorieTracker({activities} : CalorieTrackerProps)  {
             >
                 <h2 className='text-white font-bold text-center text-2xl md:text-3xl'>Resumen de Calorias</h2>
                 <div className='w-full flex justify-between md:px-28'>
+
                     <CalorieDisplay 
                         calories={caloriesConsumed}
                         text={"Consumidas"}

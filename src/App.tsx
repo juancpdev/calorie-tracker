@@ -36,9 +36,8 @@ function App() {
 
 
   const handleDateChange = (date: Date) => {
-    dispatch({ type: "set-date", payload: { date: getFormattedDate(date) } })
     setSelectedDate(getFormattedDate(date))
-  };
+  }
 
   
   return (
@@ -81,6 +80,7 @@ function App() {
             <section className=" w-full pt-10 md:px-5 xl:pb-8">
               <CalorieTracker 
                 activities={state.activities}
+                selectedDate = {selectedDate}
               />
             </section>
 
@@ -88,6 +88,7 @@ function App() {
               <ActivityList 
                 activities = {state.activities}
                 dispatch = {dispatch}
+                selectedDate = {selectedDate}
               />
             </section>
           </div>
