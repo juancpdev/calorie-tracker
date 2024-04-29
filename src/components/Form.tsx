@@ -78,7 +78,7 @@ export default function Form({dispatch, state, selectedDate} : FormProps) {
                 <label htmlFor="category" className=" font-bold text-white">Categoria:</label>
                 <select 
                     id="category" 
-                    className="border border-slate-500 rounded-md p-2 hover:cursor-pointer"
+                    className=" rounded-md p-2 hover:cursor-pointer form-inputs"
                     value={activity.category}
                     onChange={handleChange}
                 >
@@ -99,7 +99,7 @@ export default function Form({dispatch, state, selectedDate} : FormProps) {
                 <input 
                     id="name" 
                     type="text" 
-                    className="border border-slate-500 rounded-md p-2"
+                    className=" rounded-md p-2 form-inputs"
                     placeholder="Actividad. ej. Gym o Bicicleta"
                     value={activity.name}
                     onChange={handleChange}
@@ -111,7 +111,7 @@ export default function Form({dispatch, state, selectedDate} : FormProps) {
                 <input 
                     id="calories" 
                     type="number" 
-                    className="border border-slate-500 rounded-md p-2"
+                    className=" rounded-md p-2 form-inputs"
                     placeholder="Calorias. ej. 300 o 500"
                     value={activity.calories}
                     onChange={handleChange}

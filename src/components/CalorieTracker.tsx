@@ -32,14 +32,17 @@ export default function CalorieTracker({activities, selectedDate} : CalorieTrack
                     <CalorieDisplay 
                         calories={caloriesConsumed}
                         text={"Consumidas"}
+                        color={"white"}
                     />
                     <CalorieDisplay 
                         calories={caloriesBurned}
                         text={"Ejercicio"}
+                        color={"white"}
                     />
                     <CalorieDisplay 
                         calories={caloriesDif}
                         text={"Diferencia"}
+                        color={"red-500"}
                     />
                 </div>
             </div>

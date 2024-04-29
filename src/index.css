@@ -94,3 +94,7 @@ body {
     border-bottom-right-radius: 4px;
   }
   
+  .form-inputs {
+    background-color: #4e6997;
+    color: white;
+  }
