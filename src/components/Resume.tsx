@@ -19,7 +19,7 @@ export default function Resume({ onDateChange }: ResumeProps) {
         <div className="rounded-lg shadow-custom p-5" style={{ backgroundColor: "#1F2B3E" }}>
             <h2 className="text-center text-white font-bold pb-3">Historial</h2>
             <Calendar
-                onChange={handleChange}
+                onClickDay={handleChange}
                 value={value}
                 className={'calendario min-w-80'}
             />
