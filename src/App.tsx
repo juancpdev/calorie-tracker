@@ -21,7 +21,7 @@ function App() {
     <>
         <header className="w-full py-4 " style={{ backgroundColor: "#374357" }}>
           <div className=" flex justify-between items-center px-5 md:px-10">
-            <h1 className=" text-white font-bold text-xl md:text-2xl animate-jump animate-once animate-normal">Contador de Calorias</h1>
+            <img className=" w-52 md:w-72" src="/CalorieCounterLogo.svg" alt="Logo Calorie Counter" />
             <button 
               className="bg-slate-400 rounded-md p-2 font-bold text-white cursor-pointer disabled:opacity-50 disabled:cursor-default"
               disabled={!canRestartApp()}
