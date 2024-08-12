@@ -1,24 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo } from 'react'
-import { Activity } from '../types'
 import CalorieDisplay from './CalorieDisplay'
+import { useActivity } from '../hook/useActivity'
 
-type CalorieTrackerProps = {
-    activities: Activity[],
-    selectedDate: string
-}
 
-export default function CalorieTracker({activities, selectedDate} : CalorieTrackerProps)  {
+export default function CalorieTracker()  {
 
-    const caloriesConsumed = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 1 && activity.creationDate === selectedDate ? total + activity.calories : total , 0), 
-    [activities, selectedDate]);
-
-    const caloriesBurned = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 2 && activity.creationDate === selectedDate ? total + activity.calories : total , 0), 
-    [activities, selectedDate]);
-
-    const caloriesDif = useMemo(() => caloriesConsumed - caloriesBurned , [caloriesConsumed, caloriesBurned]);
+    const { caloriesBurned, caloriesConsumed, caloriesDif } = useActivity()
 
     return (
         <>

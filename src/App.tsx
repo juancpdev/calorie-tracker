@@ -1,44 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useMemo, useReducer, useState } from "react"
+import { useEffect, useMemo } from "react"
 import Form from "./components/Form"
-import { activityReducer, initialState } from "./reducers/activity-reducer"
 import ActivityList from "./components/ActivityList"
 import Resume from "./components/Resume"
 import CalorieTracker from "./components/CalorieTracker"
+import { useActivity } from "./hook/useActivity"
 
 function App() {
 
-  const [state, dispatch] = useReducer(activityReducer, initialState)
+  const { state, dispatch, handleDateChange } = useActivity()
   
   useEffect(() => {
     localStorage.setItem("activities", JSON.stringify(state.activities))
   }, [state.activities])
 
   const canRestartApp = () => useMemo(() => state.activities.length, [state.activities])
-
-
-  const getFormattedDate = (value? : Date) => {
-    let now = new Date();
-
-    if(value) {
-        now = value
-    }
-
-    const year = now.getFullYear();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const day = now.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-    
-  };
-
-  const [selectedDate, setSelectedDate] = useState<string>( getFormattedDate() );
-
-
-  const handleDateChange = (date: Date) => {
-    setSelectedDate(getFormattedDate(date))
-  }
-
   
   return (
     <>
@@ -65,12 +42,7 @@ function App() {
             </section>
             
             <section className="py-10 mx-5 md:mr-5 md:ml-0 xl:m-0 xl:pb-0" >
-   
-                <Form
-                  dispatch = {dispatch}
-                  state = {state}
-                  selectedDate = {selectedDate}
-                />
+                <Form />
 
             </section>
             
@@ -78,18 +50,11 @@ function App() {
           
           <div className=" w-full">
             <section className=" w-full pt-10 md:px-5 xl:pb-8">
-              <CalorieTracker 
-                activities={state.activities}
-                selectedDate = {selectedDate}
-              />
+              <CalorieTracker/>
             </section>
 
             <section className=" w-full py-10 md:px-5 xl:pb-8 xl:pt-0">
-              <ActivityList 
-                activities = {state.activities}
-                dispatch = {dispatch}
-                selectedDate = {selectedDate}
-              />
+              <ActivityList />
             </section>
           </div>
 

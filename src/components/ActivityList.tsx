@@ -1,21 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo, Dispatch, Fragment } from "react"
-import { Activity } from "../types"
-import { categories } from "../data/categories"
+import { Fragment } from "react"
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { ActivityActions } from "../reducers/activity-reducer"
+import { useActivity } from "../hook/useActivity"
 
-type ActivityStateProp = {
-    activities : Activity[],
-    dispatch : Dispatch<ActivityActions>,
-    selectedDate: string
-}
 
-export default function ActivityList({ activities, dispatch, selectedDate } : ActivityStateProp) {
 
-    const categoryName = useMemo(() => ( category : Activity["category"] ) => categories.map( cat => cat.id === category ? cat.name : "" ), [activities])
+export default function ActivityList() {
 
-    const isEmptyActivities = useMemo(() => (date: Activity["creationDate"]) => activities.some(fecha => fecha.creationDate === date), [activities]);
+    const { state, dispatch, selectedDate, isEmptyActivities, categoryName } = useActivity()
+
 
     return (
         <>
@@ -28,7 +21,7 @@ export default function ActivityList({ activities, dispatch, selectedDate } : Ac
                     {!isEmptyActivities(selectedDate) ?
                         <p className="text-white text-center">No hay datos en la fecha seleccionada</p> : 
                         <div className="grid gap-10 sm:grid-cols-2  lg:grid-cols-3 actividades">
-                            {activities.map( activity => (
+                            {state.activities.map( activity => (
                                 <Fragment key={activity.id}>
                                     {activity.creationDate === selectedDate ?
                                         <div className=" px-5 py-5  flex justify-between gap-1 bg-custom-gradient w-full rounded-md mx-auto relative">
