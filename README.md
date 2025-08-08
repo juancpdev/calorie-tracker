@@ -2,7 +2,7 @@
 🔗 **URL:** [CalorieCounterPro](https://caloriecounterpro.netlify.app)
 
 ## 🛠️ Tecnologías
-- HTML / CSS / JavaScript
+- HTML / CSS / JavaScript / TypeScript
 - React
 - Tailwind CSS
 
