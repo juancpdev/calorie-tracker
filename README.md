@@ -1,5 +1,5 @@
 ## 🚀 Demo
-🔗 **URL:** [https://caloriecounterpro.netlify.app/](CalorieCounterPro)
+🔗 **URL:** [CalorieCounterPro](https://caloriecounterpro.netlify.app)
 
 ## 🛠️ Tecnologías
 - HTML / CSS / JavaScript
